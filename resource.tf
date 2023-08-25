@@ -1,16 +1,3 @@
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-provider "aws" {
-  region = "us-west-2"
-}
-
 resource "aws_vpc" "myvpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
@@ -18,13 +5,6 @@ resource "aws_vpc" "myvpc" {
   }
 }
 
-variable "subnets_cidr" {
-  type = list(string)
-}
-
-variable "subnet_name" {
-  type = list(string)
-}
 
 resource "aws_subnet" "mysubnets" {
    count = length(var.subnets_cidr)
@@ -37,4 +17,3 @@ resource "aws_subnet" "mysubnets" {
      aws_vpc.myvpc
    ]
 }
-
