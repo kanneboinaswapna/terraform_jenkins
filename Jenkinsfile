@@ -8,8 +8,8 @@ stages {
     }
     stage ('build') {
         steps {
-            sh ""terraform init
-                 terraform apply -auto-approve""
+            sh """terraform init
+                 terraform apply -auto-approve"""
         }
     }
 }
